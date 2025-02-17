@@ -106,7 +106,7 @@ const group = {
     flags: "旗帜"
 }
 const loginStatus = ref(false)
-
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 // 触发文件选择
 const triggerFileInput = () => {
@@ -200,7 +200,7 @@ const UploadImages = async (file: any) => {
     const result = await controller.uploadControllerUploadImage({
       file: file
     })
-    return `http://localhost:3000${result.data?.imageUrl}`
+    return VITE_API_BASE_URL?VITE_API_BASE_URL+result.data?.imageUrl:`http://127.0.0.1:3000${result.data?.imageUrl}`
   }
   catch (error) {
     alert('图片上传失败' + error)

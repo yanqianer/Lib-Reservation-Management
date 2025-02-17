@@ -22,7 +22,7 @@
       </form>
       <p class="mt-4 text-center text-sm text-gray-500 animate-fade-in">还没有账号？<a href="http://localhost:5173/register"
           class="text-black hover:underline">注册</a></p>
-          <p class="mt-4 text-center text-sm text-gray-500 animate-fade-in"><a href="http://localhost:5173/"
+          <p class="mt-4 text-center text-sm text-gray-500 animate-fade-in"><a href="http://localhost:5173/" 
           class="text-black hover:underline">跳过登录</a></p>
 
 

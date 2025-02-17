@@ -79,6 +79,7 @@ const getBlog = async () => {
   const result = await controller.articleControllerFindAll()
   Blogs.value = result.data!
 }
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 const fileName = ref<string>('');
 // const frontCover =ref<File>({} as File)
 const frontCover = ref<any>()
@@ -177,26 +178,6 @@ const saveBlog = async () => {
     }
   }
 
-  // 将 Markdown 内容打包成文件并上传
-  // const blob = new Blob([currentBlog.value.content], { type: 'text/markdown' })
-  // const file = new File([blob], `${currentBlog.value.title}.md`, {
-  //   type: 'text/markdown',
-  // })
-
-  // const formData = new FormData()
-  // formData.append('file', file)
-
-  // try {
-  //   const response = await axios.post('/api/upload-blog', formData, {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //   })
-  //   console.log('博客上传成功:', response.data)
-  // } catch (error) {
-  //   console.error('博客上传失败:', error)
-  // }
-
   isEditing.value = false
   currentBlog.value = {} as ArticleDto
   frontCover.value=null
@@ -223,7 +204,7 @@ const handleUploadImage = async (event: any, insertImage: any, files: any) => {
       file: files[0]
     })
     insertImage({
-      url: `http://localhost:3000${result.data?.imageUrl}`,
+      url: VITE_API_BASE_URL?VITE_API_BASE_URL+result.data?.imageUrl:`http://127.0.0.1:3000${result.data?.imageUrl}`,
       desc: `${result.data?.imageUrl.split('/')[2]}`
     })
   }
@@ -236,7 +217,7 @@ const frontCoverUpload = async (file: any) => {
     const result = await controller.uploadControllerUploadImage({
       file: file
     })
-    return `http://localhost:3000${result.data?.imageUrl}`
+    return  VITE_API_BASE_URL?VITE_API_BASE_URL+result.data?.imageUrl:`http://127.0.0.1:3000${result.data?.imageUrl}`
   }
   catch (error) {
     alert('图片上传失败' + error)
