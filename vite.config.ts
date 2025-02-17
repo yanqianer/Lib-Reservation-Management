@@ -17,7 +17,9 @@ export default defineConfig(({mode})=>{
       vueDevTools(),
     ],
     server:{
+      host: '0.0.0.0', // 允许所有 IP 访问
       port: Number(env.VITE_PORT) || 5173,
+      disableHostCheck: true, // 禁用主机检查
     },
     resolve: {
       alias: {
