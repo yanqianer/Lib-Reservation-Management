@@ -10,6 +10,7 @@ export default defineConfig(({mode})=>{
   const env = loadEnv(mode, process.cwd(), ''); // 指定加载前缀为空字符串
   
 
+
   return{
 
     plugins: [

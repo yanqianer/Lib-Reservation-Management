@@ -51,7 +51,7 @@ const appControllerGetAuth = (
     
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AppControllerGetAuth200>(
-      {url: `http://localhost:3000/test/auth`, method: 'GET'
+      {url: `/test/auth`, method: 'GET'
     },
       options);
     }
@@ -64,7 +64,7 @@ const appControllerGetRole = (
     
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AppControllerGetRole200>(
-      {url: `http://localhost:3000/test/role`, method: 'GET'
+      {url: `/test/role`, method: 'GET'
     },
       options);
     }
@@ -76,7 +76,7 @@ const adminControllerDoLogin = (
     loginAdminDto: LoginAdminDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AdminControllerDoLogin200>(
-      {url: `http://localhost:3000/admin/doLogin`, method: 'POST',
+      {url: `/admin/doLogin`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: loginAdminDto
     },
@@ -90,7 +90,7 @@ const adminControllerCreate = (
     createAdminDto: CreateAdminDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AdminControllerCreate200>(
-      {url: `http://localhost:3000/admin`, method: 'POST',
+      {url: `/admin`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createAdminDto
     },
@@ -104,7 +104,7 @@ const adminControllerFindAll = (
     
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AdminControllerFindAll200>(
-      {url: `http://localhost:3000/admin`, method: 'GET'
+      {url: `/admin`, method: 'GET'
     },
       options);
     }
@@ -116,7 +116,7 @@ const adminControllerFindOne = (
     id: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AdminControllerFindOne200>(
-      {url: `http://localhost:3000/admin/${id}`, method: 'GET'
+      {url: `/admin/${id}`, method: 'GET'
     },
       options);
     }
@@ -129,7 +129,7 @@ const adminControllerUpdate = (
     updateAdminDto: UpdateAdminDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AdminControllerUpdate200>(
-      {url: `http://localhost:3000/admin/${id}`, method: 'PATCH',
+      {url: `/admin/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
       data: updateAdminDto
     },
@@ -143,7 +143,7 @@ const adminControllerRemove = (
     id: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AdminControllerRemove200>(
-      {url: `http://localhost:3000/admin/${id}`, method: 'DELETE'
+      {url: `/admin/${id}`, method: 'DELETE'
     },
       options);
     }
@@ -156,7 +156,7 @@ const articleControllerCreate = (
     createArticleDto: CreateArticleDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ArticleControllerCreate200>(
-      {url: `http://localhost:3000/article`, method: 'POST',
+      {url: `/article`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createArticleDto
     },
@@ -170,7 +170,7 @@ const articleControllerFindAll = (
     
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ArticleControllerFindAll200>(
-      {url: `http://localhost:3000/article`, method: 'GET'
+      {url: `/article`, method: 'GET'
     },
       options);
     }
@@ -182,7 +182,7 @@ const articleControllerFindOneByTitle = (
     title: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ArticleControllerFindOneByTitle200>(
-      {url: `http://localhost:3000/article/articleTitle/${title}`, method: 'GET'
+      {url: `/article/articleTitle/${title}`, method: 'GET'
     },
       options);
     }
@@ -194,7 +194,7 @@ const articleControllerFindOneById = (
     id: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ArticleControllerFindOneById200>(
-      {url: `http://localhost:3000/article/articleId/${id}`, method: 'GET'
+      {url: `/article/articleId/${id}`, method: 'GET'
     },
       options);
     }
@@ -207,7 +207,7 @@ const articleControllerUpdate = (
     updateArticleDto: UpdateArticleDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ArticleControllerUpdate200>(
-      {url: `http://localhost:3000/article/${id}`, method: 'PATCH',
+      {url: `/article/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
       data: updateArticleDto
     },
@@ -221,7 +221,7 @@ const articleControllerRemove = (
     id: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ArticleControllerRemove200>(
-      {url: `http://localhost:3000/article/${id}`, method: 'DELETE'
+      {url: `/article/${id}`, method: 'DELETE'
     },
       options);
     }
@@ -233,7 +233,7 @@ const commentControllerCreate = (
     createCommentDto: CreateCommentDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<CommentControllerCreate200>(
-      {url: `http://localhost:3000/comment`, method: 'POST',
+      {url: `/comment`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createCommentDto
     },
@@ -247,7 +247,7 @@ const commentControllerFindAllByArticleId = (
     id: number,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<CommentControllerFindAllByArticleId200>(
-      {url: `http://localhost:3000/comment/${id}`, method: 'GET'
+      {url: `/comment/${id}`, method: 'GET'
     },
       options);
     }
@@ -259,7 +259,7 @@ const commentControllerRemove = (
     articleId: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<CommentControllerRemove200>(
-      {url: `http://localhost:3000/comment/${articleId}`, method: 'DELETE'
+      {url: `/comment/${articleId}`, method: 'DELETE'
     },
       options);
     }
@@ -275,7 +275,7 @@ if(uploadControllerUploadImageBody.file !== undefined) {
  }
 
       return customInstance<UploadControllerUploadImage200>(
-      {url: `http://localhost:3000/upload/image`, method: 'POST',
+      {url: `/upload/image`, method: 'POST',
       headers: {'Content-Type': 'multipart/form-data', },
        data: formData
     },
@@ -289,7 +289,7 @@ const anonymousControllerCreate = (
     createAnonymousDto: CreateAnonymousDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AnonymousControllerCreate200>(
-      {url: `http://localhost:3000/anonymous`, method: 'POST',
+      {url: `/anonymous`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createAnonymousDto
     },
@@ -303,7 +303,7 @@ const anonymousControllerFindAllByArticleId = (
     articleId: number,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AnonymousControllerFindAllByArticleId200>(
-      {url: `http://localhost:3000/anonymous/${articleId}`, method: 'GET'
+      {url: `/anonymous/${articleId}`, method: 'GET'
     },
       options);
     }
@@ -315,7 +315,7 @@ const anonymousControllerRemove = (
     articleId: number,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<AnonymousControllerRemove200>(
-      {url: `http://localhost:3000/anonymous/${articleId}`, method: 'DELETE'
+      {url: `/anonymous/${articleId}`, method: 'DELETE'
     },
       options);
     }
@@ -328,7 +328,7 @@ const postControllerCreate = (
     createPostDto: CreatePostDto,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<PostControllerCreate200>(
-      {url: `http://localhost:3000/post`, method: 'POST',
+      {url: `/post`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createPostDto
     },
@@ -343,7 +343,7 @@ const postControllerFindAll = (
     
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<PostControllerFindAll200>(
-      {url: `http://localhost:3000/post`, method: 'GET'
+      {url: `/post`, method: 'GET'
     },
       options);
     }
@@ -356,7 +356,7 @@ const postControllerRemove = (
     id: string,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<void>(
-      {url: `http://localhost:3000/post/${id}`, method: 'DELETE'
+      {url: `/post/${id}`, method: 'DELETE'
     },
       options);
     }
@@ -368,7 +368,7 @@ const postControllerGetByPage = (
     page: number,
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<PostControllerGetByPage200>(
-      {url: `http://localhost:3000/post/${page}`, method: 'GET'
+      {url: `/post/${page}`, method: 'GET'
     },
       options);
     }

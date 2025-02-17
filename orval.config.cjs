@@ -1,3 +1,8 @@
+
+
+
+
+
 module.exports = {
     'petstore-file': {
       input: 'http://localhost:3000/api-json',
@@ -11,7 +16,6 @@ module.exports = {
             name: "customInstance",
           },
         },
-        baseUrl: 'http://localhost:3000',
       },
       // override: {
       //   mutator: {
