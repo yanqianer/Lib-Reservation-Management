@@ -1,11 +1,11 @@
 <template>
-    <div class="max-w-2xl mx-auto p-4 bg-white text-black relative overflow-hidden w-full min-h-screen">
+    <div class="max-w-2xl mx-auto p-4 bg-white text-black relative overflow-hidden w-full min-h-screen dark:bg-gray-800">
         <!-- 发帖区域 -->
         <!-- 输入框 -->
         <div class="border-b border-gray-300 py-4 flex gap-4 relative z-10"  v-if="loginStatus">
-            <img class="w-10 h-10 rounded-full" src="../assets/avatar.jpg" alt="User Avatar" />
+            <img class="w-10 h-10 rounded-full" src="/avatar.jpg" alt="User Avatar" />
             <div class="w-full">
-                <textarea v-model="newPostContent" placeholder="What’s happening?"
+                <textarea v-model="newPostContent" placeholder="What's happening?"
                     class="w-full bg-transparent text-black border-b border-gray-300 p-2 focus:outline-none"></textarea>
 
                 <!-- 图片上传和实时预览 -->
@@ -88,7 +88,7 @@ interface PostDtoWithAvatar extends PostDto{
 }
 const newPostContent = ref('');
 const newPostImages = ref<string[]>([]);
-const fileInput = ref(null);
+const fileInput = ref<HTMLInputElement | null>(null);
 const posts = ref<PostDtoWithAvatar[]>([] as PostDtoWithAvatar[]);
 const page = ref(1);
 const isLoading = ref(false);
@@ -106,11 +106,13 @@ const group = {
     flags: "旗帜"
 }
 const loginStatus = ref(false)
-const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const VITE_API_BASE_URL = __API_URL__
 
 // 触发文件选择
 const triggerFileInput = () => {
-    fileInput.value.click();
+    if (fileInput.value) {
+        fileInput.value.click();
+    }
 };
 
 // 处理图片上传
@@ -163,7 +165,7 @@ const addPost = async () => {
         id:1000,
         name: '萌萌的政政',
         handle: 'wzz',
-        avatar: 'src/assets/avatar.jpg',
+        avatar: '/avatar.jpg',
         createTime: 'Just now',
         content: newPostContent.value,
         images: newPostImages.value.toString(),
@@ -184,7 +186,7 @@ const loadPosts = async () => {
         result.data?.forEach((res)=>{
             posts.value.push({
                 ...res,
-                avatar:'src/assets/avatar.jpg'
+                avatar:'/avatar.jpg'
             });
         })
         page.value++;
@@ -195,20 +197,19 @@ const loadPosts = async () => {
     isLoading.value = false;
 };
 const UploadImages = async (file: any) => {
-    console.log(file)
-  try {
-    const result = await controller.uploadControllerUploadImage({
-      file: file
-    })
-    return VITE_API_BASE_URL?VITE_API_BASE_URL+result.data?.imageUrl:`http://127.0.0.1:3000${result.data?.imageUrl}`
-  }
-  catch (error) {
-    alert('图片上传失败' + error)
-  }
-  return ''
+    try {
+        const result = await controller.uploadControllerUploadImage({
+            file: file
+        })
+        return result.data?.imageUrl ? `${VITE_API_BASE_URL}${result.data.imageUrl}` : ''
+    }
+    catch (error) {
+        alert('图片上传失败' + error)
+    }
+    return ''
 }
 // 监听页面滚动
-const observer = ref(null);
+const observer = ref<IntersectionObserver | null>(null);
 
 onMounted(() => {
     getLoginStatus()
@@ -220,7 +221,10 @@ onMounted(() => {
         },
         { threshold: 0.1 }
     );
-    observer.value.observe(document.querySelector('#load-more'));
+    const loadMoreEl = document.querySelector('#load-more');
+    if (loadMoreEl && observer.value) {
+        observer.value.observe(loadMoreEl);
+    }
 });
 const formatTime = (timestamp: string) => {
     const date = new Date(timestamp);

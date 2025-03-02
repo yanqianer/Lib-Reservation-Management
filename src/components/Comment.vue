@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 border rounded-lg shadow-sm w-full max-w-2xl mt-4">
+    <div class="p-4 border rounded-lg shadow-sm w-full max-w-2xl mt-4 ">
         <div class="text-left w-full">
             <p class="text-4xl mb-3">评论</p>
         </div>

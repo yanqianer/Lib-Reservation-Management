@@ -43,7 +43,7 @@ const router = createRouter({
     {
       path: '/blog/:id',
       name: 'PostDetail',
-      component: () => import('../views/BlogPost.vue')
+      component: () => import('../views/BolgPost.vue')
     },
     {
       path: '/login',
@@ -51,8 +51,8 @@ const router = createRouter({
       component: () => import('../views/Login.vue')
     },
     {
-      path: '/admin/test',
-      component: () => import('../views/test.vue')
+      path: '/test',
+      component: () => import('../views/test2.vue')
     },
     {
       path: '/post',

@@ -1,7 +1,7 @@
 import { ref, computed, reactive, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { AdminDto, ArticleDto } from '@/orval-test/client.schemas'
-
+import VMdPreview from '@kangc/v-md-editor/lib/preview';
 export const useCounterStore = defineStore('counter', () => {
   const count = ref(0)
   const doubleCount = computed(() => count.value * 2)
@@ -23,21 +23,34 @@ export const AdminStore = defineStore('admin', () => {
   })
   return { admin, setAdminDto }
 })
-export const useThemeStore = defineStore('theme', () => {
-  const theme = ref(localStorage.getItem('theme') || 'light');
 
-  const toggleTheme = () => {
-    theme.value = theme.value === 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', theme.value);
-    document.documentElement.classList.toggle('dark', theme.value === 'dark');
-  };
-
-  return { theme, toggleTheme };
-});
 export const ArticleStore = defineStore('article', () => {
   const article = ref<ArticleDto[]>([])
   const setArticle = (articleDto: ArticleDto[]) => {
     article.value = articleDto
   }
   return { article, setArticle }
+})
+
+export const NowArticleStore = defineStore('NowArticle',()=>{
+  const NowArticle = ref<ArticleDto>({} as ArticleDto)
+  const setNowArticle = (articleDto: ArticleDto) => {
+    NowArticle.value = articleDto
+  }
+  return { NowArticle, setNowArticle }
+})
+export const PreviewStore  =defineStore('preview',()=>{
+  const preview = ref<InstanceType<typeof VMdPreview> | null>(null);
+  const setPreview  =(previews:InstanceType<typeof VMdPreview> | null)=>{
+      preview.value = previews
+  }
+  return {preview,setPreview}
+})
+
+export const ActiveAnchoStore = defineStore('activeAncho',()=>{
+  const activeAncho = ref<string | null>(null);
+  const setActiveAncho = (ancho:string | null)=>{
+    activeAncho.value = ancho
+  }
+  return {activeAncho,setActiveAncho}
 })

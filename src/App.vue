@@ -1,19 +1,13 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { RouterView } from 'vue-router';
-import { useThemeStore } from '@/stores/counter';
+
 import 'animate.css'; // 引入 Animate.css
 import AppFooter from '@/components/AppFooter.vue';
 
-const themeStore = useThemeStore();
 
-onMounted(() => {
-  if (themeStore.theme === 'dark') {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-});
+
+
 </script>
 
 <template>
@@ -22,10 +16,10 @@ onMounted(() => {
     leave-active-class="animate__animated animate__backOutDown"
     mode="out-in"
   >
-    <div :key="$route.fullPath" class="content-wrapper">
-      <router-view />
+    <div :key="$route.fullPath" class="content-wrapper dark:text-gray-100 dark:bg-gray-800">
+      <router-view  />
       <AppFooter />
-    </div>
+    </div>  
   </transition>
 </template>
 
@@ -46,5 +40,16 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* 添加暗模式支持 */
+body {
+  background-color: white; /* 默认背景 */
+  color: black; /* 默认文本颜色 */
+}
+
+body.dark {
+  background-color: #1a202c; /* 暗模式背景 */
+  color: white; /* 暗模式文本颜色 */
 }
 </style>

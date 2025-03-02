@@ -79,7 +79,7 @@ const getBlog = async () => {
   const result = await controller.articleControllerFindAll()
   Blogs.value = result.data!
 }
-const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:3000'
 const fileName = ref<string>('');
 // const frontCover =ref<File>({} as File)
 const frontCover = ref<any>()
@@ -204,7 +204,7 @@ const handleUploadImage = async (event: any, insertImage: any, files: any) => {
       file: files[0]
     })
     insertImage({
-      url: VITE_API_BASE_URL?VITE_API_BASE_URL+result.data?.imageUrl:`http://127.0.0.1:3000${result.data?.imageUrl}`,
+      url: result.data?.imageUrl ? `${VITE_API_BASE_URL}${result.data.imageUrl}` : '',
       desc: `${result.data?.imageUrl.split('/')[2]}`
     })
   }
@@ -217,7 +217,7 @@ const frontCoverUpload = async (file: any) => {
     const result = await controller.uploadControllerUploadImage({
       file: file
     })
-    return  VITE_API_BASE_URL?VITE_API_BASE_URL+result.data?.imageUrl:`http://127.0.0.1:3000${result.data?.imageUrl}`
+    return  result.data?.imageUrl ? `${VITE_API_BASE_URL}${result.data.imageUrl}` : ''
   }
   catch (error) {
     alert('图片上传失败' + error)

@@ -1,9 +1,9 @@
 <template>
-  <div :class="['min-h-screen', 'w-full', theme]">
+  <div class="min-h-screen w-full  dark:bg-gray-800">
     <Navbar />
 
     <!-- 主体内容 -->
-    <div class="container mx-auto px-4 py-10 text-center">
+    <div class="container mx-auto px-4 py-10 text-center ">
       <div class="flex flex-col items-center">
         <!-- 头像 -->
         <img
@@ -36,7 +36,7 @@ import { useRoute } from 'vue-router';
 import 'animate.css'; // 引入 Animate.css
 
 const theme = ref(localStorage.getItem('theme') || 'light');
-const avatar = ref('src/assets/avatar.jpg');
+const avatar = ref('/avatar.jpg');
 const route = useRoute();
 const isBouncing = ref(false); // 控制是否触发 bounce 动画
 
@@ -46,12 +46,6 @@ const bounceAvatar = () => {
   setTimeout(() => {
     isBouncing.value = false; // 动画结束后移除动画类
   }, 1000); // 1 秒后移除动画类（与动画持续时间一致）
-};
-
-const toggleTheme = () => {
-  theme.value = theme.value === 'light' ? 'dark' : 'light';
-  localStorage.setItem('theme', theme.value);
-  document.documentElement.classList.toggle('dark', theme.value === 'dark');
 };
 
 onMounted(() => {
@@ -72,8 +66,5 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.dark {
-  background-color: #1a202c;
-  color: #f7fafc;
-}
-</style>
+
+</style>  

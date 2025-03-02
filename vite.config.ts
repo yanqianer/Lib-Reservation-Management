@@ -6,13 +6,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 
 // https://vite.dev/config/
-export default defineConfig(({mode})=>{
-  const env = loadEnv(mode, process.cwd(), ''); // 指定加载前缀为空字符串
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
   
-
-
-  return{
-
+  return {
+    define: {
+      // 定义全局变量
+      __API_URL__: JSON.stringify(env.VITE_API_BASE_URL || 'http://127.0.0.1:3000')
+    },
     plugins: [
       vue(),
       vueDevTools(),
@@ -28,5 +29,4 @@ export default defineConfig(({mode})=>{
       },
     },
   }
- 
 })

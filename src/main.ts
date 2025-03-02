@@ -20,6 +20,11 @@ VueMarkdownEditor.use(vuepressTheme, {
 
 VMdPreview.use(vuepressTheme,{
   Prism,
+  config:{
+    toc: {
+      includeLevel: [3, 4],
+    },
+  }
 })
 const app = createApp(App)
 setupAxiosInterceptor()
